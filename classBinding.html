@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vue: Input</title>
+</head>
+<body>
+
+<div id="root">
+
+<button v-bind:title="myTitle">Hover over me</button>
+<!-- v-on: can be replaced with @ 
+     v-bind can be replaced with : --> 
+<!-- click is attribute, takes argument -->
+
+</div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+var app = new Vue({
+	el: '#root',
+	data: 
+	{ 
+		myTitle: 'Title is set using Vue and JS'
+	}
+});
+		
+
+</script>
+</body>
+</html>

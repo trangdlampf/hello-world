@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vue: Compute</title>
+<style>
+	.color-red { color: red; }
+	.is-loading { background: green; }
+</style>
+</head>
+<body>
+
+<div id="root">
+<h2>All Tasks</h2>
+<task>Go to the Store</task>
+<task>Go to the Park</task>
+<task>Go to the Bank</task>
+</div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+Vue.component('task', {
+
+	template: '<li><slot></slot></li>'
+
+})
+
+new Vue({
+
+	el: '#root'
+
+});
+		
+
+</script>
+</body>
+</html>

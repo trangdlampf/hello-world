@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vue: Input</title>
+</head>
+<body>
+
+<div id="root">
+
+<!-- <input type="text" id="input" v-model="message">
+<p> The value of input is: {{ message }}</p>
+-->
+
+<ul>
+	<!-- One way to do this <li v-for="name in names">{{ name }}</li> -->
+	<li v-for="name in names" v-text="name"></li>
+</ul>
+
+<input id="input" type="text" v-model="newName">
+<button v-on:click="addName">Add Name</button> <!-- v-on: can be replaced with @ --> 
+<!-- click is attribute, takes argument -->
+
+</div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+var app = new Vue({
+	el: '#root',
+	data: 
+	{ 
+		nameName: '',
+		names: ['Joe', 'Jane', 'Mary', 'Jack']	
+	},
+	methods: {
+		addName: function() {
+			// alert('adding name');
+			this.names.push(this.newName);
+			this.newName = '';
+		}
+	}
+});
+
+/* document.querySelector('#myButton').addEventListener('click', () => {
+	let name = document.querySelector('#input').value;
+	app.names.push(name);	
+			
+}); */			
+
+</script>
+</body>
+</html>

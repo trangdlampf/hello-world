@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vue: Compute</title>
+<style>
+	.color-red { color: red; }
+	.is-loading { background: green; }
+</style>
+</head>
+<body>
+
+<div id="root">
+<h2>All Tasks</h2>
+<task-list></task-list>
+</div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+Vue.component('task-list', {
+
+	template:'<div><task v-for="task in tasks">{{ task.task }}</task></div>',
+	data() {
+		return {
+			tasks: [
+			{ task: 'study', completed: true },
+			{ task: 'sleep', completed: true },
+			{ task: 'walk', completed: false },
+			{ task: 'talk', completed: false },
+			{ task: 'sit', completed: true },
+			{ task: 'read', completed: true }
+			]
+		};
+	}
+});
+
+Vue.component('task', {
+	template: '<li><slot></slot></li>'
+});
+
+
+new Vue({
+	el: '#root'
+});
+		
+
+</script>
+</body>
+</html>
