@@ -65,12 +65,12 @@ nav a:last-child{
 nav.home .home,
 	nav.projects .projects,
 	nav.services .services,
-	nav.contact .contact, nav.blog .blog{		
+	nav.contact .contact, nav.documents .documents, nav.blog .blog{		
 	background-color:#e17b2d; /* Darker Orange: e17b2d Original Pink: e35885 */	
 }	
 p{		
 	font-size: 12px;		
-	font-weight:bold;		
+	/* font-weight:bold; */		
 	color:black; /* Gray: 7d9098 */	
 }	
 p b{		
@@ -235,8 +235,9 @@ ul li p detail {
 
 <!-- The mustache expression will be replaced with the value of "active".
  It will automatically update to reflect any changes. -->	
-<p>You chose <b>{{content}} <!-- <i>and</i> {{active}} --></b>
-</p>
+<!-- <p>You chose <b>{{active}} <!-- <i>and</i> {{active}} --><!-- </b>
+</p> -->
+<div><p>{{content}}</p></div> 
 </div>
 
 <form id="main3" v-cloak>
@@ -249,7 +250,7 @@ ul li p detail {
     <li id="divId3" v-for="article in filteredArticles">
         <a id="divId3" v-bind:href="article.url"><img id="divId3" v-bind:src="article.image" /></a>
         <p id="divId3">{{article.title}}</p>
-		<p id="detail">Technologies Used: {{article.technologies}}</p>
+		<p id="detail">Technologies: {{article.technologies}}</p>
     </li>
 </ul>
 </form> 
@@ -344,7 +345,7 @@ var demo = new Vue({
 	methods: {	
 		makeActives: function(item) {
 	// When a model is changed, the view will be automatically updated.			
-			this.active = this.content;	// this.active = item;		
+			this.active = item;	// this.active = item;		
 		}	
 	}
 });
