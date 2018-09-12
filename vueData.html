@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vue.js Navigation Menu</title>
+
+<style>	
+*{
+	margin:0;		
+	padding:0;	
+}	
+body{		
+	font:10px/0.8 'Open Sans', sans-serif;		
+	color: #7f98b8;	/* Blue-green 5e5b64 Gray-Blue: 7f98b8 */	
+	text-align:center;
+	margin: 0px;	
+} 
+li{			
+	text-align:left;
+	margin-left: 100px;	
+	font:14px/1.0 serif;	
+} 
+a, a:visited {		
+	outline:none;		
+	color:#389dc1; /* Blue-green: 389dc1 */	
+} 	
+a:hover{		
+	text-decoration:none;	
+}	
+section, footer, header, aside, nav{		
+	display: block;	
+}	
+/*-------------------------
+		The menu
+	--------------------------*/	
+nav{		
+	display:inline-block;		
+	margin: 0px auto 45px; /* margin:60px auto 45px; */		
+	background-color:#e6a84c; /* Orange: e1992d Darker Orange: e17b2d Black: 000000 White: ffffff Original Blue-green color: 5597b4 */		
+	box-shadow:0 1px 1px #ccc;		
+	border-radius:2px;	
+}
+nav a{	
+	display:inline-block;		
+	padding: 18px 30px;		
+	color:#fff !important;		
+	font-weight:bold;		
+	font-size:16px;		
+	text-decoration:none !important;		
+	line-height:1;		
+	text-transform: uppercase;		
+	background-color:transparent;		
+	-webkit-transition:background-color 0.25s;		
+	-moz-transition:background-color 0.25s;		
+	transition:background-color 0.25s;	
+}
+nav a:first-child{		
+	border-radius:2px 0 0 2px;	
+}	
+nav a:last-child{		
+	border-radius:0 2px 2px 0;	
+}	
+nav.home .home,
+	nav.projects .projects,
+	nav.services .services,
+	nav.contact .contact, nav.blog .blog{		
+	background-color:#e17b2d; /* Darker Orange: e17b2d Original Pink: e35885 */	
+}	
+p{		
+	font-size: 12px;		
+	font-weight:bold;		
+	color:black; /* Gray: 7d9098 */	
+}	
+p b{		
+	color:#ffffff;		
+	display:inline-block;		
+	padding:5px 10px;		
+	background-color:#c7cfdb; /* Light Gray: c4d7e0 Lighter Gray: c7cfdb */		
+	border-radius:2px;		
+	text-transform:uppercase;		
+	font-size:18px;	
+} 
+p #divId3_info{		
+	font-size: 12px;				
+	color:#7d9098; /* Gray: 7d9098 */
+} 
+h1 {
+	font-size:10px;		
+	font-weight:bold;		
+	color:#7d9098; /* Gray: 7d9098 */		
+}
+/* =================== SEARCH ==================*/
+/* Hide un-compiled mustache bindings
+until the Vue instance is ready */
+[v-cloak] {
+  display: none;
+}
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    font:15px/1.3 'Open Sans', sans-serif;
+    color: #5e5b64;
+    text-align:center;
+}
+a, a:visited {
+    outline:none;
+    color:#389dc1;
+}
+a:hover{
+    text-decoration:none;
+}
+section, footer, header, aside, nav{
+    display: block;
+}
+/*-------------------------
+    The search input
+--------------------------*/
+.bar{
+    background-color:#5c9bb7; /* Blue-green: 5c9bb7 */
+    background-image:-webkit-linear-gradient(top, #e17b2d, #e17b2d); /* (top, #5c9bb7, #5392ad);  #e17b2d; Darker Orange: e17b2d */
+    background-image:-moz-linear-gradient(top, #e17b2d, #e17b2d);
+    background-image:linear-gradient(top, #e17b2d, #e17b2d);
+    box-shadow: 0 1px 1px #ccc;
+    border-radius: 2px;
+    width: 400px;
+    padding: 8px;
+    margin: 45px auto 20px;
+    position:relative;
+}
+.bar input{
+    background:#fff no-repeat 13px 13px;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU5NEY0RTlFMTA4NzExRTM5RTEzQkFBQzMyRjkyQzVBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkU5NEY0RTlGMTA4NzExRTM5RTEzQkFBQzMyRjkyQzVBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTk0RjRFOUMxMDg3MTFFMzlFMTNCQUFDMzJGOTJDNUEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTk0RjRFOUQxMDg3MTFFMzlFMTNCQUFDMzJGOTJDNUEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4DjA/RAAABK0lEQVR42pTSQUdEURjG8dOY0TqmPkGmRcqYD9CmzZAWJRHVRIa0iFYtM6uofYaiEW2SRJtEi9YxIklp07ZkWswu0v/wnByve7vm5ee8M+85zz1jbt9Os+WiGkYdYxjCOx5wgFeXUHmtBSzpcCGa+5BJTCjEP+0nKWAT8xqe4ArPGEEVC1hHEbs2oBwdXkM7mj/JLZrad437sCGHOfUtcziutuYu2v8XUFF/4f6vMK/YgAH1HxkBYV60AR31gxkBYd6xAeF3VzMCwvzOBpypX8V4yuFRzX2d2gD/l5yjH4fYQEnzkj4fae5rJulF2sMXVrAsaTWttRFu4Osb+1jEDT71/ZveyhouTch2fINQL9hKefKjuYFfuznXWzXMTabyrvfyIV3M4vhXgAEAUMs7K0J9UJAAAAAASUVORK5CYII=);
+    border: none;
+    width: 100%;
+    line-height: 20px;
+    padding: 11px 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px #c4c4c4 inset; /* Light-gray: c4c4c4 */
+    text-align: left;
+    font-size: 14px;
+    font-family: inherit;
+    color: #738289; /* Medium-shade Gray: 738289 */
+    font-weight: bold;
+    outline: none;
+    text-indent: 40px;
+}
+<!-- ul{
+    list-style: none;
+    width: 100%; 
+    margin: 0 0 0 0; // margin: 0 auto;  
+    text-align: left;
+}
+ul li{
+    border-top: 10px solid #e17b2d; 
+    padding: 0px; 
+    overflow: hidden;
+	margin-left: 0px;
+}
+ul li img{
+    width:100%;
+    height:300px;
+    float:left;
+    border:none;
+}
+ul li p{
+    margin-left: 75px; 
+    font-weight: bold;
+    padding-top: 12px; 
+    color:#6e7a7f;
+} -->
+
+ul #divId3{
+    list-style: none;
+    width: 300px;
+    margin: 0 auto;
+    text-align: left;
+	border: none;
+}
+ul li a #divId3{
+    /* border-bottom: 1px solid #ddd; */
+	border-bottom: 2px solid #e17b2d; 
+    padding: 10px;
+    overflow: hidden;
+	font-size: 10px;
+	margin-left: 0px;	
+}
+ul li #divId3 img {
+    width:60px;
+    height:60px;
+    float:left;
+    border:none;
+}
+ul li p {
+    margin-left: 75px;
+    font-size: 10px;
+    padding-top: 12px;
+    color:#6e7a7f; <!-- #6e7a7f -->
+	width: 200px;
+} 
+ul li p detail {
+    margin-left: 75px;
+    font-size: 8px;
+    padding-top: 12px;
+    color:#6e7a7f; <!-- #6e7a7f -->
+	width: 200px;
+}    
+</style>
+
+</head>
+<body>
+
+<form id="main2" v-cloak>
+    <ul>
+        <!-- Render a li element for every entry in the computed filteredArticles array. -->
+        <li v-for="article in filteredArticles">
+            <a v-bind:href="article.url"><img v-bind:src="article.image" /></a>
+        </li>
+    </ul>
+</form>
+
+<div id="main">	
+<!-- The navigation menu will get the value of the "active" variable as a class. -->	
+<!-- To stops the page from jumping when a link is clicked we use the "prevent" modifier (short for preventDefault). -->
+	<nav v-bind:class="active" v-on:click.prevent>		
+	<!-- When a link in the menu is clicked, we call the makeActive method, defined in the JavaScript Vue instance. -->		
+		<a href="#" class="home" v-on:click="makeActives('home')">Home</a>
+		<!-- <a href="#" class="home" v-on:click="makeActives('home')">Home</a> -->
+		<a href="#" class="documents" v-on:click="makeActives('documents')">Documents</a>
+		<a href="#" class="contact" v-on:click="makeActives('contact')">Contact</a>	
+	</nav>
+
+<!-- The mustache expression will be replaced with the value of "active".
+ It will automatically update to reflect any changes. -->	
+<p>You chose <b>{{content}} <!-- <i>and</i> {{active}} --></b>
+</p>
+</div>
+
+<form id="main3" v-cloak>
+<div id="divId3" class="bar">
+    <!-- Create a binding between the searchString model and the text field -->
+    <input type="text" v-model="searchString" placeholder="Enter your search terms" />
+</div>
+<ul>
+    <!-- Render a li element for every entry in the computed filteredArticles array. -->
+    <li id="divId3" v-for="article in filteredArticles">
+        <a id="divId3" v-bind:href="article.url"><img id="divId3" v-bind:src="article.image" /></a>
+        <p id="divId3">{{article.title}}</p>
+		<p id="detail">Technologies Used: {{article.technologies}}</p>
+    </li>
+</ul>
+</form> 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+<script>
+
+
+// Creating a new Vue instance and pass in an options object.
+// Need tick marks or `
+/* var headerTemplate = `					
+	<div style="background: white;">
+  	<slot name="header"></slot>
+  </div>
+`										
+
+Vue.component('page-header', {
+	template: headerTemplate
+});
+*/
+
+/* var pageTemplate = `					
+  <div>
+    <page-header>
+    	<h1 slot="header">This Classification is up to UNCLASSIFIED</h1>
+		<img v-bind:src="article.image" />
+    </page-header>
+  </div>
+`										
+Vue.component('page', {
+	template: pageTemplate
+}) */
+/* 
+new Vue({
+	el: "#header-example"
+});
+*/
+
+////////////////////////////////////////////////////////////////////////////
+var demo2 = new Vue({
+    el: '#main2',
+    data: {
+        searchString: "",
+
+        // The data model. These items would normally be requested via AJAX,
+        // but are hardcoded here for simplicity.
+
+        articles: [
+            {
+                "title": "Custom map for study purposes",
+                "url": "http://trangdoanlam.com/maps/",
+                "image": "images/mapBig.jpg"
+            }
+        ]
+    },
+    computed: {
+        // A computed property that holds only those articles that match the searchString.
+        filteredArticles: function () {
+            var articles_array = this.articles,
+                searchString = this.searchString;
+
+            if(!searchString){
+                return articles_array;
+            }
+
+            searchString = searchString.trim().toLowerCase();
+
+            articles_array = articles_array.filter(function(item){
+                if(item.title.toLowerCase().indexOf(searchString) !== -1){
+                    return item;
+                }
+            })
+
+            // Return an array with the filtered data.
+            return articles_array;;
+        }
+    }
+});
+
+
+///////////////////////////////////////////////////////////////////////////
+var demo = new Vue({
+	// A DOM element to mount our view model.	
+	el: '#main',
+	// Define properties and give them initial values.	
+	data: {	
+		active: 'home', // active: 'home'
+		content: 'My desire to share my joy in living, in the beauty of Life, its Yin and Yang. My love for beauty finds its inspiration in Nature. Yet, I find that logic and reason can be beautiful, too. That there is order and creativity in solving problems logically, in finding order in chaos and symmetry in Nature and in Reason. Thus, my photography, my maps and my journey from art to data visualizations to programming.'		
+	},
+	// Functions we will be using.	
+	methods: {	
+		makeActives: function(item) {
+	// When a model is changed, the view will be automatically updated.			
+			this.active = this.content;	// this.active = item;		
+		}	
+	}
+});
+
+/////////////////////////////////////////////////////////////////////////
+var demo3 = new Vue({
+    el: '#main3',
+    data: {
+        searchString: "",
+
+        // The data model. These items would normally be requested via AJAX, 
+        // but are hardcoded here for simplicity.
+
+        articles: [
+            {
+                "title": "Map: Washington, D.C.",
+                "url": "http://trangdoanlam.com/portfolio/leafletBeforeAfter.html",
+                "image": "images/map_beforeAfter.jpg",
+				"technologies": "Maptiles, Leaflet, HTML, CSS, JavaScript, Datapoints"
+            },
+            {
+                "title": "Map: Hurricane Evacuation Routes in Houston",
+                "url": "http://trangdoanlam.com/portfolio/arcGis_houston2_hurricaneRoute.html",
+                "image": "images/map_evacuation.jpg",
+				"technologies": "ArcGIS, Data Extraction from live database"				
+            },
+            {
+                "title": "Map: Airports around the World",
+                "url": "http://trangdoanlam.com/portfolio/leafletClusterJson_airports.html",
+                "image": "images/map_airports.jpg",
+				"technologies": "Maptiles, Leaflet and Clustering, JavaScript, Datapoints, JSON"					
+            },
+            {
+                "title": "Map: Earthquakes",
+                "url": "http://trangdoanlam.com/portfolio/leaflet_restServices.html",
+                "image": "images/map_earthquake.jpg",
+				"technologies": "Maptiles, Leaflet, JavaScript, Datapoints, REST Services"				
+            },
+            {
+                "title": "Map: Europe and France",
+                "url": "http://trangdoanlam.com/portfolio/d3mapFrance.html",
+                "image": "images/map_europe.jpg",
+				"technologies": "Vector Tiles, D3, JavaScript, Datapoints, CSV, Map Projection"					
+            },
+            {
+                "title": "Map: Europe and Asia",
+                "url": "http://trangdoanlam.com/portfolio/asynleaf.html",
+                "image": "images/map_asynchronous.jpg",
+				"technologies": "Maptiles, Leaflet, JavaScript, Datapoints, Asynchronous Calls and Callbacks"				
+            }
+        ]
+    },
+    computed: {
+        // A computed property that holds only those articles that match the searchString.
+        filteredArticles: function () {
+            var articles_array = this.articles,
+                searchString = this.searchString;
+
+            if(!searchString){
+                return articles_array;
+            }
+
+            searchString = searchString.trim().toLowerCase();
+
+            articles_array = articles_array.filter(function(item){
+                if( (item.title.toLowerCase().indexOf(searchString) !== -1) || (item.technologies.toLowerCase().indexOf(searchString) !== -1) ){
+                    return item;
+                }
+            })
+
+            // Return an array with the filtered data.
+            return articles_array;;
+        }
+    }
+});
+
+
+</script>
+</body>
+</html>
