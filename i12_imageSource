@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Vue: Image Source</title>
+</head>
+
+<style>
+body {
+	margin: 0px;
+}
+</style>
+<body>
+            
+<div id="app">            
+     <img v-bind:src="imageSource">   
+</div>
+        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> 
+<!-- <script src="index1.js"></script> -->
+<!-- Use the below instead -->
+
+<script>
+var app = new Vue({
+	el: '#app',
+	data: {
+		imageSource: 'images/mapBig.jpg'
+	}
+})
+</script>
+    
+</body>
+</html>
