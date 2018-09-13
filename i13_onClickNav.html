@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Vue: onClick, Nav</title>
+</head>
+<body>
+
+<!-- https://paulund.co.uk/vuejs-conditional-show-and-hide -->
+<p>Information about: v-on:click or Toggle</p>  
+            
+<div id="app">
+
+  <div v-on:click="seen = !seen">Please Click Me</div>	
+  <!-- <p><button class="" v-on:click="seen = !seen">Click Me</button></p> -->
+  <p v-if="seen">Message 1</p>
+  
+  <div v-on:click="seen2 = !seen2">Please Click Me</div>	
+  <p v-if="seen2">Message 2</p>
+  
+</div>
+        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> 
+<!-- <script src="index1.js"></script> -->
+<!-- Use the below instead -->
+
+<script>
+var app = new Vue({
+        el: '#app',
+        data: {
+            seen: true,
+			seen2: true
+        }
+});
+
+</script>
+    
+</body>
+</html>
