@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Vue: If-Else</title>
+</head>
+<body>
+<p>v-on:click or Toggle</p>  
+            
+<div id="app">
+  <p v-if="seen">Message Can Be Seen!</p>
+  <p><button class="btn btn-lg btn-primary" v-on:click="seen = !seen">Click Me</button></p>
+</div>
+        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> 
+<!-- <script src="index1.js"></script> -->
+<!-- Use the below instead -->
+
+<script>
+var app = new Vue({
+        el: '#app',
+        data: {
+            seen: true
+        }
+});
+</script>
+    
+</body>
+</html>
