@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Vue: If-Else</title>
+</head>
+<body>
+<p>Set to false, so nothing shows below:</p>   
+   
+<div id="app">            
+     <div v-if="isVisible">Now you see me</div>  
+</div>
+        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> 
+<!-- <script src="index1.js"></script> -->
+<!-- Use the below instead -->
+
+<script>
+var app = new Vue({
+	el: '#app',
+	data: {
+		isVisible: false
+	}
+})
+</script>
+    
+</body>
+</html>
