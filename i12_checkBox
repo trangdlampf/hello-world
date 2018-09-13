@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Vue: If-Else</title>
+</head>
+<body>
+<p>Checkbox:</p>  
+            
+<div id="selector">
+	<div class="checkbox">
+		<label><input type="checkbox" v-model="checked">Options</label>
+	</div>
+	
+	<div class="container" id="app-container" v-if="checked">
+		<p>Text is visible</p>
+	</div>       
+</div>
+        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> 
+<!-- <script src="index1.js"></script> -->
+<!-- Use the below instead -->
+
+<script>
+var app = new Vue({
+        el: '#selector',
+        data: {
+            checked: false
+        }
+});
+</script>
+    
+</body>
+</html>
