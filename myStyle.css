@@ -54,7 +54,7 @@ p {
 	font-family: serif;
 	font-weight: lighter;
 	color: #A8A8A8;
-	margin: 4 0 0 20;
+	margin: 4 0 0 10; /* 4 0 0 20 */
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -121,25 +121,26 @@ until the Vue instance is ready */
 
 li {			
 	text-align:left;
-	margin-left: 60px;	
+	margin-left: 0px;	
 	font: 10px serif;
 	height: 60px;
+	border: 0px solid red; /* Testing Purposes */	
 }
-ul #myListSearch {
+ul {
     list-style: none;
-    width: 300px;
-    margin: 0 auto;
+    width: 360px;
+    margin: 0 0; /* 0 auto */
     text-align: left;
-	border: 0px solid green;
+	border: 0px solid green; /* Testing Purposes */
 }
 ul li a #myListSearch {
-    border-bottom: 1px solid #ddd; 
-	border-bottom: 2px solid #e17b2d; 
+	border-bottom: 0px solid #e17b2d; 
     padding: 0px;
     overflow: hidden;
 	font-size: 10px;
 	margin-left: 0px;
-	margin-bottom: 0px;
+	margin-bottom: 10px;
+	margin-top: 0px;
 }
 ul li #myListSearch img {
     width: 52px;
@@ -148,8 +149,8 @@ ul li #myListSearch img {
     border: none;
 }
 ul li #myListText {	
-    margin-left: 68px;
-	margin-top: 0px;
+    margin-left: 66px;
+	margin-top: 2px;
     /* font-size: 10px;
     padding-left: 100px;
 	margin-bottom: 0px;
@@ -164,27 +165,32 @@ ul li #myListText {
 	width: 200px;
 } 
 */
+
+
 /*-------------------------
     	List layout
 --------------------------*/
 .barView {
-    background-color: #4711AE; 
-    background-image:-webkit-linear-gradient(top, #4711AE, #4711AE); 
-    background-image:-moz-linear-gradient(top, #4711AE, #4711AE);
-    background-image:linear-gradient(top, #4711AE, #4711AE);
+    background-color: none; 
+    background-image:-webkit-linear-gradient(top, none, none); 
+    background-image:-moz-linear-gradient(top, none, none);
+    background-image:linear-gradient(top, none, none);
     box-shadow: 0 0px 0px #ccc; 
     border-radius: 0px;
     width: 140px;
-    padding: 0px;
+	padding: 0px;
+    padding-top: 46px;
+	padding-left: -20px;
     margin: 0px 0px 0px;
     position: absolute;
 	display:inline-block;	
+	border: 0px solid red;
 }
 /* BAR BEGIN: DIFFERENT VIEWS */
 .barView a{
-	background:#4987a1 center center no-repeat;
-	width: 120px;
-	height: 20px;
+	background: #4711AE center center no-repeat; /* #4987a1 */
+	width: 40px;
+	height: 40px;
 	display:inline-block;
 	text-decoration:none !important;
 	margin: 0px;
@@ -192,35 +198,36 @@ ul li #myListText {
 	margin-top: 0px;
 	border-radius:0px;
 	cursor:pointer;
+	border: 0px solid blue;	
 }
 .barView a.active{
-	background-color:#c14694; 
+	background-color: none; 
 }
 .barView a.list-icon{
 	margin-top: 5px;
-	height: 30px;
-	width: 10px;
+	height: 40px;
+	width: 40px;
 	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYzNkFCQ0ZBMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYzNkFCQ0ZCMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjM2QUJDRjgxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjM2QUJDRjkxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7h1bLqAAAAWUlEQVR42mL8////BwYGBn4GCACxBRlIAIxAA/4jaXoPEkMyjJ+A/g9MDJQBRhYg8RFqMwg8RJIUINYLFDmBUi+ADQAF1n8ofk9yIAy6WPg4GgtDMRYAAgwAdLYwLAoIwPgAAAAASUVORK5CYII=);
 }
 .barView a.grid-icon{
-	height: 30px;
-	width: 20px;
+	height: 40px;
+	width: 40px;
 	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjBEQkMyQzE0MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjBEQkMyQzE1MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MERCQzJDMTIxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MERCQzJDMTMxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4MjPshAAAAXklEQVR42mL4////h/8I8B6IGaCYKHFGEMnAwCDIAAHvgZgRyiZKnImBQsACxB+hNoDAQyQ5osQZIT4gH1DsBZABH6AB8x/JaQzEig++WPiII7Rxio/GwmCIBYAAAwAwVIzMp1R0aQAAAABJRU5ErkJggg==);
 }
 /* BAR END: DIFFERENT VIEWS */
 ul.list-icon, ul.grid-icon {
 	display:inline-block;	
 }
-ul.list{
+ul.list {
 	list-style: none;
 	width: 500px;
-	margin: 0; /* 0 auto */
+	margin: 0 auto; /* 0 auto */
 	text-align: left;
 }
 
 ul.list li{
-	border-bottom: 1px solid #ddd;
-	padding: 10px;
+	border-bottom: 0px solid gray; /* #ddd */
+	padding: 0px;
 	overflow: hidden;
 }
 
@@ -232,22 +239,23 @@ ul.list li img{
 }
 
 ul.list li p{
-	margin-left: 135px;
+	margin-left: 0px; /* 135px */
 	font-weight: bold;
 	color:#6e7a7f;
 }
 /*-------------------------
-	Grid layout
+	Grid layout 
 --------------------------*/
 ul.grid{
 	list-style: none;
-	width: 570px;
+	width: 400px;
 	margin: 0 auto;
 	text-align: left;
+	padding: 20px;
 }
 
 ul.grid li{
-	padding: 2px;
+	padding: 20px;
 	float:left;
 }
 
@@ -258,6 +266,8 @@ ul.grid li img{
 	display:block;
 	border:none;
 }
+
+
 /* 3 Major Colors: Purple Orange Green: 
 https://colorschemedesigner.com/csd-3.5/
 Purple: Main: #4711AE, Dark to Light: #2A0671, #482A83, #7746D7, #906CD7
@@ -265,123 +275,4 @@ Green:  Main: #E2FA00, Dark to Light: #93A300, #AEBC2F, #EAFD3F, #EFFD72
 Orange: Main: #FFB600, Dark to Light: #A67600, #BF9630, #FFC840, #FFD773
 Gray: Medium #7d9098, Light: #c4c4c4
 */
-
-
-
-    /*-------------------------
-    	The search input
-    --------------------------*/
-
-    .bar{
-    	background-color:#5c9bb7;
-
-    	background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
-    	background-image:-moz-linear-gradient(top, #5c9bb7, #5392ad);
-    	background-image:linear-gradient(top, #5c9bb7, #5392ad);
-
-    	box-shadow: 0 1px 1px #ccc;
-    	border-radius: 2px;
-    	width: 580px;
-    	padding: 10px;
-    	margin: 45px auto 25px;
-    	position:relative;
-    	text-align:right;
-    	line-height: 1;
-    }
-
-    .bar a{
-    	background:#4987a1 center center no-repeat;
-    	width:32px;
-    	height:32px;
-    	display:inline-block;
-    	text-decoration:none !important;
-    	margin-right:5px;
-    	border-radius:2px;
-    	cursor:pointer;
-    }
-
-    .bar a.active{
-    	background-color:#c14694;
-    }
-
-    .bar a.list-icon{
-    	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYzNkFCQ0ZBMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYzNkFCQ0ZCMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjM2QUJDRjgxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjM2QUJDRjkxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7h1bLqAAAAWUlEQVR42mL8////BwYGBn4GCACxBRlIAIxAA/4jaXoPEkMyjJ+A/g9MDJQBRhYg8RFqMwg8RJIUINYLFDmBUi+ADQAF1n8ofk9yIAy6WPg4GgtDMRYAAgwAdLYwLAoIwPgAAAAASUVORK5CYII=);
-    }
-
-    .bar a.grid-icon{
-    	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjBEQkMyQzE0MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjBEQkMyQzE1MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MERCQzJDMTIxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MERCQzJDMTMxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4MjPshAAAAXklEQVR42mL4////h/8I8B6IGaCYKHFGEMnAwCDIAAHvgZgRyiZKnImBQsACxB+hNoDAQyQ5osQZIT4gH1DsBZABH6AB8x/JaQzEig++WPiII7Rxio/GwmCIBYAAAwAwVIzMp1R0aQAAAABJRU5ErkJggg==);
-    }
-
-    .bar input{
-    	background:#fff no-repeat 13px 13px;
-
-    	border: none;
-    	width: 100%;
-    	line-height: 19px;
-    	padding: 11px 0;
-
-    	border-radius: 2px;
-    	box-shadow: 0 2px 8px #c4c4c4 inset;
-    	text-align: left;
-    	font-size: 14px;
-    	font-family: inherit;
-    	color: #738289;
-    	font-weight: bold;
-    	outline: none;
-    	text-indent: 40px;
-    }
-
-    /*-------------------------
-    	List layout
-    --------------------------*/
-
-    ul.list{
-    	list-style: none;
-    	width: 500px;
-    	margin: 0 auto;
-    	text-align: left;
-    }
-
-    ul.list li{
-    	border-bottom: 1px solid #ddd;
-    	padding: 10px;
-    	overflow: hidden;
-    }
-
-    ul.list li img{
-    	width:120px;
-    	height:120px;
-    	float:left;
-    	border:none;
-    }
-
-    ul.list li p{
-    	margin-left: 135px;
-    	font-weight: bold;
-    	color:#6e7a7f;
-    }
-
-    /*-------------------------
-    	Grid layout
-    --------------------------*/
-
-    ul.grid{
-    	list-style: none;
-    	width: 200px;
-    	margin: 0 auto;
-    	text-align: left;
-    }
-
-    ul.grid li{
-    	padding: 2px;
-    	float:left;
-    }
-
-    ul.grid li img{
-    	width:100px;
-    	height:100px;
-    	object-fit: cover;
-    	display:block;
-    	border:none;
-    }
 
