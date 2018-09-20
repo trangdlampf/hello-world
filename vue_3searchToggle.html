@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Vue: Banner, Nav</title>
+</head>
+<!--  Currently Looking at: 
+file://///gold.rtgold.nima.mil/home/nde_users_29/lamtd11/Profile/Desktop/sf_vue/index13_onClick_nav1.html
+file://///gold.rtgold.nima.mil/home/nde_users_29/lamtd11/Profile/Desktop/sf_vue/vueData.html 
+Good info about routers: https://www.reddit.com/r/vuejs/comments/6al40a/multiple_single_file_components_on_one_web_page/
+https://medium.com/@disjfa/using-vue-js-in-existing-websites-the-easy-way-d46cd1f0c945
+-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style/myStyle.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+<script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script> 
+
+<body>
+
+<hr color-fill="red" height="4px" />
+<div id="app_bannerImage">            
+     <img v-bind:src="imageSource">   
+</div>
+
+
+<div id="container">
+<div id="main">	
+<!-- The navigation menu will get the value of the "active" variable as a class. -->	
+<!-- To stops the page from jumping when a link is clicked we use the "prevent" modifier (short for preventDefault). -->
+	<nav v-bind:class="active" v-on:click.prevent>		
+	<!-- When a link in the menu is clicked, we call the makeActive method, defined in the JavaScript Vue instance. -->		
+		<a href="#" class="home" v-on:click="makeActives('home')">Home</a>
+		<a href="#" class="writings" v-on:click="makeActives('writings')">Writings</a>
+		<a href="#" class="contact" v-on:click="makeActives('contact')">Contact</a>	
+
+
+
+		
+	</nav>
+
+
+
+<!-- The mustache expression will be replaced with the value of "active".
+     It will automatically update to reflect any changes. -->	
+<p><b>{{active}}<b></p>
+<p>{{content}}</p>
+</div>
+</div>
+
+
+<form id="main3" v-cloak>
+<div class="bar">
+    <!-- Create a binding between the searchString model and the text field -->
+    <input type="text" v-model="searchString" placeholder="Enter your search terms" />
+</div>
+
+
+<div class="barView">
+		<a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+		<a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>	
+</div>	
+<ul v-if="layout == 'grid'" class="grid">
+	<!-- A view with big photos and no text 
+	<li v-for="a in filteredArticles">
+		<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.large" /></a>
+	</li> -->
+
+
+<ul id="myListSearch">
+    <!-- Render a li element for every entry in the computed filteredArticles array. -->
+    <li id="myListSearch" v-for="article in filteredArticles">
+        <a id="myListSearch" v-bind:href="article.url"><img id="myListSearch" v-bind:src="article.image.large" /></a>
+	</li>
+</ul>
+
+	
+</ul>
+
+<ul v-if="layout == 'list'" class="list">
+	<!-- A compact view smaller photos and titles -->
+	<!-- <li v-for="a in filteredArticles">
+		<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.small" /></a>
+		<p>{{a.title}}</p>
+	</li> -->
+<ul id="myListSearch">
+    <!-- Render a li element for every entry in the computed filteredArticles array. -->
+    <li id="myListSearch" v-for="article in filteredArticles">
+        <a id="myListSearch" v-bind:href="article.url"><img id="myListSearch" v-bind:src="article.image.small" /></a>
+        <div id="myListText">{{article.title}}</div>
+		<div id="myListText">Technologies: {{article.technologies}}<div>
+		<div>Format: {{article.mapType}}<div>
+		</li>
+</ul>	
+		
+</ul>
+
+</form> 
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> 
+<script>
+var app1 = new Vue({
+	el: '#app_bannerImage',
+	data: {
+		imageSource: 'images/mapBig.jpg'
+	}
+});
+
+///////////////////////////////////////////////////////////////////////////
+var app2 = new Vue({
+	// A DOM element to mount our view model.	
+	el: '#main',
+	// Define properties and give them initial values.
+	// <a v-on:click="doSomething">
+	data: {	
+		active: 'home',
+		content: 'My desire to share my joy in living, in the beauty of Life, its Yin and Yang. My love for beauty finds its inspiration in Nature. Yet, I find that logic and reason can be beautiful, too. That there is order and creativity, in solving problems logically, in finding order in chaos and symmetry in Nature and in Reason. Thus, my photography, my maps and my journey from art to data visualizations to programming.'
+	},
+	// Functions we will be using.	
+	methods: {	
+		makeActives: function(item) {
+	// When a model is changed, the view will be automatically updated.			
+			this.active = item;
+			if (item == "writings") {
+				this.content = 'Most of my writing have been on technical subjects such as the school projects on Usability Engineering and Software Development. The two school projects include topics on Vocabgram (a bilingual language app) and SportsSponsor (an app that connects sponsors with kids who want be involved in extra-curricular activities).';
+			} else if (item == "contact") {
+				this.content = 'Thank you for visiting my website. It has been an honest pleasure to share with you my thoughts of art and life. I have enjoyed sharing my particular journey with you. You can contact me via: trangdlampf@gmail.com';
+			} else {
+				this.content = 'My desire to share my joy in living, in the beauty of Life, its Yin and Yang. My love for beauty finds its inspiration in Nature. Yet, I find that logic and reason can be beautiful, too. That there is order and creativity in solving problems logically, in finding order in chaos and symmetry, in Nature and in Reason. Thus, my photography, my maps, and my journey from art to data visualizations to programming.';
+			}
+		},
+		getContent: function(item) {
+			this.content = item;
+		}
+	},
+	// I have not tested this code yet to create link from Writings page to PDF files
+	// <a v-on:click="openWindow"></a>
+	computed: {
+		openWindow: function(myUrlAddress) {		
+			window.open(
+			  'https://www.trangdoanlam.com/portfolio/',
+			  '_blank' // <- This is what makes it open in a new window.
+			);
+		}
+	}
+});
+////////////////////////////////////////////////////////////////////////
+var demo3 = new Vue({
+    el: '#main3',
+    data: {
+        searchString: "",
+        // The data model. These items would normally be requested via AJAX, 
+        // but are hardcoded here for simplicity.
+		layout: 'grid',
+        articles: [
+            {
+                "title": "Map: Washington, D.C.",
+                "url": "http://trangdoanlam.com/portfolio/leafletBeforeAfter.html",
+				"image": {
+                    "large": "images/map_beforeAfter.jpg",
+                    "small": "images/map_beforeAfter.jpg"
+                },				
+				"technologies": "Leaflet, HTML, CSS, JavaScript",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Hurricane Evacuation Routes in Houston",
+                "url": "http://trangdoanlam.com/portfolio/arcGis_houston2_hurricaneRoute.html",			
+				"image": {
+                    "large": "images/map_evacuation.jpg",
+                    "small": "images/map_evacuation.jpg"
+                },				
+				"technologies": "ArcGIS, REST, Nodes.js, Data Extraction",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Airports around the World",
+                "url": "http://trangdoanlam.com/portfolio/leafletClusterJson_airports.html",		
+				"image": {
+                    "large": "images/map_airports.jpg",
+                    "small": "images/map_airports.jpg"
+                },				
+				"technologies": "Leaflet and Clustering, JavaScript, JSON",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Earthquakes",
+                "url": "http://trangdoanlam.com/portfolio/leaflet_restServices.html",				
+				"image": {
+                    "large": "images/map_earthquake.jpg",
+                    "small": "images/map_earthquake.jpg"
+                },				
+				"technologies": "Maptiles, Leaflet, JavaScript, REST Services",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Europe and France",
+                "url": "http://trangdoanlam.com/portfolio/d3mapFrance.html",				
+				"image": {
+                    "large": "images/map_europe.jpg",
+                    "small": "images/map_europe.jpg"
+                },								
+				"technologies": "D3, JavaScript, CSV, Map Projection",
+				"mapType": "Vector Tiles"
+            },
+            {
+                "title": "Map: Europe and Asia",
+                "url": "http://trangdoanlam.com/portfolio/asynleaf.html",				
+				"image": {
+                    "large": "images/map_asynchronous.jpg",
+                    "small": "images/map_asynchronous.jpg"
+                },							
+				"technologies": "Leaflet, JavaScript, Asynchronous Calls, Callbacks",
+				"mapType": "Map Tiles"				
+            }
+        ]
+    },
+    computed: {
+        // A computed property that holds only those articles that match the searchString.
+        filteredArticles: function () {
+            var articles_array = this.articles,
+                searchString = this.searchString;
+            if(!searchString){
+                return articles_array;
+            }
+            searchString = searchString.trim().toLowerCase();
+            articles_array = articles_array.filter(function(item){
+                if( (item.title.toLowerCase().indexOf(searchString) !== -1) || (item.technologies.toLowerCase().indexOf(searchString) !== -1) ){
+                    return item;
+                }
+            })
+            // Return an array with the filtered data.
+            return articles_array;;
+        }
+    }
+});
+
+</script> 
+</body>
+</html>
