@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    
+<style>
+.center {
+    text-align: center;
+}
+.center a {
+    margin: 20px;
+}
+.center h2 {
+    margin-top: 40px;
+}
+.container {
+    margin-top: 80px;
+}
+</style>
+</head>
+<body>
+    
+    <div id="app">
+        <router-link :to="{ path: 'home'}">Home</router-link>
+        <router-link :to="{ path: 'writings'}">Writings</router-link>
+        <router-link :to="{ path: 'contact'}">Contact</router-link>		
+        
+        <router-view></router-view>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var HomePageComponent = {
+            template: '<h2>Home Page</h2>'
+        }
+
+        var WritingsComponent = {
+            template: '<h2>Writings Page</h2>'
+        }
+		
+		var ContactComponent = {
+            template: '<h2>Contact Page</h2>'
+        }
+
+        const routes = [
+            { path: '/home', name: 'home', component: HomePageComponent },
+            { path: '/writings', name: 'writings', component: WritingsComponent },
+			{ path: '/contact', name: 'contact', component: ContactComponent },
+        ]
+
+        const router = new VueRouter({
+            routes // short for `routes: routes`
+        })
+
+        var app = new Vue({
+            components: {
+                'HomePageComponent': HomePageComponent,
+                'WritingsComponent': WritingsComponent,
+				'ContactComponent': ContactComponent
+            },
+            router
+        }).$mount('#app')
+    </script>
+</body>
+</html>
