@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue and Bootstrap</title>
+
+	<!--jquery cdn-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+	<!--bootstrap cdn-->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--vuejs cdn-->
+	<script src="https://unpkg.com/vue@2.1.7/dist/vue.js"></script>
+	<!-- Leaflet: Map API -->	
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+	<link rel="stylesheet" type="text/css" href="scripts/leaflet/leaflet_noAttribute.css" />
+	<script src="scripts/leaflet/leaflet_noAttribute.js"></script>
+	<!-- My CSS -->
+	<link rel="stylesheet" type="text/css" href="style/myStyle.css"> 
+
+	
+<style>
+#navBarContainer {
+	 background-color: #e0ecff;
+}
+</style>	
+</head>
+<body>
+
+
+<hr color-fill="red" height="4px" margin="0px" />
+<div id="map" style="width: 100%; height: 200px;"></div>
+<hr color-fill="red" height="4px" margin-bottom="20px" />
+
+
+<div class="container">
+<div id="app">
+<tabs>
+	<tab name="Why Vue.js" :selected="true">
+        <h1>Why Vue.js</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus quae repellendus vel! Accusamus aliquid,
+          consequuntur culpa cumque esse ex fugiat impedit inventore laudantium maiores molestiae officia provident quod
+          totam veniam!</p>
+	</tab>
+	<tab name="Data Binding">
+        <h1>Data Binding</h1>
+        <p>Accusamus aliquid, consequuntur culpa cumque esse ex fugiat impedit inventore laudantium maiores molestiae 
+		officia provident quod totam veniam! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus quae 
+		repellendus vel! </p>
+	</tab>	
+	<tab name="Data Visualization">
+        <h1>Data Visualization</h1>
+        <p>Minus quae repellendus vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid,
+          consequuntur culpa cumque esse ex fugiat impedit inventore laudantium maiores molestiae officia provident quod
+          totam veniam!</p>
+	</tab>	
+	<tab name="Response and React">
+        <h1>Response and Reactivity</h1>
+        <p>Lorem ipsum minus quae repellendus vel! Accusamus aliquid, consequuntur culpa cumque esse ex fugiat impedit 
+		inventore laudantium maiores molestiae officia provident quod totam veniam! Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit.</p>
+	</tab>		
+</tabs>		
+</div>
+</div>
+
+
+
+<script type="x-template" id="template-tabs">
+<div id="applicationContainer">
+
+    <div id="navBarContainer" class="navbar navbar-default">	  
+    <ul class="nav navbar-nav">
+        <li class="nav-link" :class="{ active: menuItem.isActive }" v-for="menuItem in navItemsArray"><a :href="menuItem.href" @click="selectTabItem(menuItem)">{{ menuItem.name }}</a></li>
+    </ul>
+    </div>
+    
+    <div id="tabContentContainer">
+      <slot></slot>
+    </div>
+</div>
+</script>
+
+
+<script type="x-template" id="template-tab">
+  <div id="individualTabContentContainer" v-show="isActive" class="jumbotron">
+    <slot></slot>
+  </div>
+</script>
+<script>
+Vue.component('tabs', {
+    template: '#template-tabs',
+    data() {
+      return {
+        navItemsArray: []
+      }
+    },
+    mounted() {
+      this.navItemsArray = this.$children
+    },
+    methods: {
+      selectTabItem(passedAlongMenuItemObject) {
+        this.navItemsArray.forEach(navItem => {
+          navItem.isActive = (passedAlongMenuItemObject == navItem)
+        })
+      }
+    }
+})
+  
+Vue.component('tab', {
+    template: '#template-tab',
+    props: {
+      name: { required: true },
+      selected: { default: false }
+    },
+    data() {
+      return {
+        isActive: false
+      }
+    },
+    computed: {
+      href() {
+        return '#' + this.name.toLowerCase().replace(/ /g, '-')
+      }
+    },
+    mounted() {
+      this.isActive = this.selected
+    }
+})
+  
+new Vue({
+    el: '#app'
+})
+</script>
+
+
+<form id="mainSearch" v-cloak>
+<div class="bar">
+    <!-- Create a binding between the searchString model and the text field -->
+    <input type="text" v-model="searchString" placeholder="Enter your search terms" />
+</div>
+
+<div class="barView">
+	<a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+	<a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>	
+</div>
+	
+<ul v-if="layout == 'list'" class="list">
+	<!-- A compact view smaller photos and titles -->
+	<!-- <li v-for="a in filteredArticles">
+		<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.small" /></a>
+		<p>{{a.title}}</p>
+	</li> -->
+	<ul id="myListSearch">
+		<!-- Render a li element for every entry in the computed filteredArticles array. -->
+		<li id="myListSearch" v-for="article in filteredArticles">
+			<a id="myListSearch" v-bind:href="article.url"><img id="myListSearch" v-bind:src="article.image.small" /></a>
+			<div id="myListText">{{article.title}}</div>
+			<div id="myListText">Technologies: {{article.technologies}}<div>
+			<div>Format: {{article.mapType}}<div>
+		</li>
+	</ul>			
+</ul>
+
+<ul v-if="layout == 'grid'" class="grid">
+	<!-- A view with big photos and no text 
+	<li v-for="a in filteredArticles">
+		<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.large" /></a>
+	</li> -->
+	<ul id="myGridSearch">
+		<!-- Render a li element for every entry in the computed filteredArticles array. -->
+		<li id="myGridSearch" v-for="article in filteredArticles">
+			<a v-bind:href="article.url"><img id="myGridSearch" v-bind:src="article.image.large" /></a>
+		</li>
+	</ul>	
+</ul>
+
+</form> 
+<script>	
+var map = L.map('map').setView([38.9072, -77.0369], 9);
+var stamenTerrain = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 18					
+	}).addTo(map); 		
+</script>
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> 
+<script>
+var demo3 = new Vue({
+    el: '#mainSearch',
+    data: {
+        searchString: "",
+        // The data model. These items would normally be requested via AJAX, 
+        // but are hardcoded here for simplicity.
+		layout: 'list',
+        articles: [
+            {
+                "title": "Map: Washington, D.C.",
+                "url": "http://trangdoanlam.com/portfolio/leafletBeforeAfter.html",
+				"image": {
+                    "large": "images/map_beforeAfter.jpg",
+                    "small": "images/map_beforeAfter.jpg"
+                },				
+				"technologies": "Leaflet, HTML, CSS, JavaScript",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Hurricane Evacuation Routes in Houston",
+                "url": "http://trangdoanlam.com/portfolio/arcGis_houston2_hurricaneRoute.html",			
+				"image": {
+                    "large": "images/map_evacuation.jpg",
+                    "small": "images/map_evacuation.jpg"
+                },				
+				"technologies": "ArcGIS, REST, Nodes.js, Data Extraction",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Airports around the World",
+                "url": "http://trangdoanlam.com/portfolio/leafletClusterJson_airports.html",		
+				"image": {
+                    "large": "images/map_airports.jpg",
+                    "small": "images/map_airports.jpg"
+                },				
+				"technologies": "Leaflet and Clustering, JavaScript, JSON",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Earthquakes",
+                "url": "http://trangdoanlam.com/portfolio/leaflet_restServices.html",				
+				"image": {
+                    "large": "images/map_earthquake.jpg",
+                    "small": "images/map_earthquake.jpg"
+                },				
+				"technologies": "Maptiles, Leaflet, JavaScript, REST Services",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Europe and France",
+                "url": "http://trangdoanlam.com/portfolio/d3mapFrance.html",				
+				"image": {
+                    "large": "images/map_europe.jpg",
+                    "small": "images/map_europe.jpg"
+                },								
+				"technologies": "D3, JavaScript, CSV, Map Projection",
+				"mapType": "Vector Tiles"
+            },
+            {
+                "title": "Map: Europe and Asia",
+                "url": "http://trangdoanlam.com/portfolio/asynleaf.html",				
+				"image": {
+                    "large": "images/map_asynchronous.jpg",
+                    "small": "images/map_asynchronous.jpg"
+                },							
+				"technologies": "Leaflet, JavaScript, Asynchronous Calls",
+				"mapType": "Map Tiles"				
+            }
+        ]
+    },
+    computed: {
+        // A computed property that holds only those articles that match the searchString.
+        filteredArticles: function () {
+            var articles_array = this.articles,
+                searchString = this.searchString;
+            if(!searchString){
+                return articles_array;
+            }
+            searchString = searchString.trim().toLowerCase();
+            articles_array = articles_array.filter(function(item){
+                if( (item.title.toLowerCase().indexOf(searchString) !== -1) || (item.technologies.toLowerCase().indexOf(searchString) !== -1) ){
+                    return item;
+                }
+            })
+            // Return an array with the filtered data.
+            return articles_array;;
+        }
+    }
+});
+
+</script> 
+</body>
+</html>
