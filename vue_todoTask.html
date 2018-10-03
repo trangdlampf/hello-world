@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue and Bootstrap: To Do Task App</title>
+
+	<!-- From: In YouTube, search for: Todo Task List Application simon
+	https://www.youtube.com/watch?v=W4qrvNHKtD8
+	His Github handle: https://github.com/simonjsuh -->
+	<!--jquery cdn-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+	<!--bootstrap cdn-->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--vuejs cdn-->
+	<script src="https://unpkg.com/vue@2.1.7/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div class="container col-sm-8 col-offset-2">
+<div id="taskApp">
+	<h1>To Do Task List App</h1>
+
+	<table class="table">
+	<thead>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<td></td>		
+			<td></td>
+			<td></td>	
+		</tr>
+	</tbody>
+	</table>
+</div>
+</div>
+<script type="x-template" id="template-tabs">
+</script>
+
+
+<script>
+var taskApp = new Vue({
+	el: '#taskApp',
+	data: {
+		tasks: 
+		[
+			{name: 'gotta do this task first' },
+			{name: 'buy pet food' },
+			{name: 'fishtank' }			
+		]
+	}
+});
+
+</script>
+</body>
+</html>
