@@ -1,4 +1,11 @@
-<!-- https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/ -->
+<!-- https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/ 
+https://codepen.io/olayinkaos/pen/GMmpPm -->
+
+#results {
+  position: fixed;
+  right: 0;
+  top: 10%;
+}
 
 <div class="columns" id="app">
   <div class="column is-two-thirds">
@@ -125,3 +132,31 @@
     </section>
   </div>
 </div>
+
+Vue.use(VeeValidate);
+VeeValidate.Validator.extend("polite", {
+  getMessage: field => `You need to be polite in the ${field} field`,
+  validate: value => value.toLowerCase().indexOf("please") !== -1
+});
+new Vue({
+  el: "#app",
+  data: {
+    form: {
+      name: "",
+      message: "",
+      inquiry_type: "",
+      logrocket_usecases: [],
+      terms: false,
+      concepts: [],
+      js_awesome: ""
+    },
+    options: {
+      inquiry: [
+        { value: "feature", text: "Feature Request" },
+        { value: "bug", text: "Bug Report" },
+        { value: "support", text: "Support" }
+      ]
+    }
+  }
+});
+
