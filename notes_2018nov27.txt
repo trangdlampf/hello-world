@@ -1,0 +1,4 @@
+# This is research from Nov 26, 2017 also
+# https://docs.pivotal.io/pivotalcf/2-3/pas/intro.html
+# research on JIRA and Vue.js
+# https://www.guru99.com/jira-tutorial-a-complete-guide-for-beginners.html
