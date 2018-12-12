@@ -1,0 +1,15 @@
+<template>
+  <div class="home">
+    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+	<p>Here is the content of the homepage.</p>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+// import HelloWorld from "@/components/HelloWorld.vue";
+
+export default {
+  name: "home" // home is name of component
+};
+</script>
