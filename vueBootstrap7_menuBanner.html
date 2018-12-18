@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue and Bootstrap: Menu</title>
+
+	<!-- From: In YouTube, search for: Bootstrap Vue.js menu in 30 minutes
+	https://www.youtube.com/watch?v=sla6z5gFPfw 
+	His Github handle: https://github.com/simonjsuh -->
+	<!--jquery cdn-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+	<!--bootstrap cdn-->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--vuejs cdn-->
+	<script src="https://unpkg.com/vue@2.1.7/dist/vue.js"></script>
+
+</head>
+<body>
+<div class="container">
+<div id="app">
+
+<!--NOTE: This was another image: style='background: url("./banner5.jpg") -->
+<div class='jumbotron jumbotron-fluid py-5' style='background: url("mapBig.jpg") right bottom; color: black;'>
+    <div class='container'>
+        <h1>Data Binding and Data Visualization <small class='text-muted'>v2.1</small></h1>
+            <medium>With a Focus on Vue.js</medium>
+    </div>
+</div>
+
+<tabs>
+	<tab name="Why Vue" :selected="true">
+		<h1>Why Vue</h1>
+		<p>You may ask why you should choose Vue.js over other frameworks and JavaSCript libraries. In a nutshell, Vue.js allows for modular programming and creative solutions; scaling applications and websites can be done with ease and less time. While other frameworks are available (think Angular and React), Vue.js, as a data-binding library, allows the programmer to create tools such as Search Engines and Workflows where the processing time is reduced.</p>
+	</tab>
+	<tab name="Data Binding">	
+		<h1>Data Binding</h1>
+		<p>So, what is special about Data-Binding? Data-Binding can be compared to a two-way street. Since data is bound to the input from the User, then it allows data to flow two ways and creates less of a bottle-neck effect. In traditional databases, the data is input from the User to the Database in the first step. In the second step, when the User wants to query or "get" the data, this takes another call and slows down the data flow between the User and the Database (e.g. similar to a one-way street). Thus, using Data-Binding as a framework (e.g. Vue.js) is faster and will reduce the chances of a website crashing when the User wants to pull data on a website.</p>
+	</tab>
+	<tab name="Data Visualization">	
+		<h1>Data Visualization</h1>
+		<p>Let's move onto Data Visualization. What would you rather do?  Read a 100-page report or see that same data visualized on a one-page diagram? People can process and understand data better when they see say a line chart versus reading 2,000 rows of data. Visualizing the differences over a sequence (e.g. time or space such as a map) can be quickly done, and let's face it. People always want to save time and make their lives easier. Data Visualization supports this effort.</p>	
+	</tab>
+	<tab name="Onward and Upward">	
+		<h1>Onward and Upward</h1>
+		<p>Moving onward: Let's look at some simple Tools created using Vue.js that can make your life easier and save you time. Here are some options such as a To-Do List, a Post-it Note, and a Search Engine. Please see the tabs on the right.</p>			  
+	</tab>
+</tabs>
+</div>
+</div>
+
+<!--type="x-template"	This line allows you to see code in color -->
+<!-- The above script will replace whatever is in this <script id="template-tabs"> and put it in between <tabs></tabs> -->
+<!-- template for: "tabs", with an "s" -->
+<script type="x-template" id="template-tabs">
+	<div id="applicationContainer">
+		<div id="navBarContainer" class="navbar navbar-default">
+			<ul class="nav navbar-nav">
+			<li class="nav-link" :class="{ active: menuItem.isActive }" v-for="menuItem in navItemsArray"><a :href="menuItem.href" @click="selectTabItem(menuItem)">{{ menuItem.name }}</a></li>
+			</ul>
+		</div>
+		
+		<div id="tabContentContainer">
+			<slot></slot>
+		</div>
+	</div>
+</script>
+<!-- template for: "tab", without an "s" -->
+<script type="x-template" id="template-tab">
+	<div id="individualTabContentContainer" v-show="isActive">
+		<slot></slot>
+	</div>
+</script>
+
+<script>
+<!-- data() allows us to count how many items are in the tab_Array and then create the same number of buttons in the menu -->
+Vue.component('tabs', {
+	template: '#template-tabs',
+	data() {
+		return {
+			navItemsArray: []
+		}
+	},
+	<!-- once data() is ready to use, then we need to mount it -->
+	mounted() {
+		this.navItemsArray = this.$children
+	},
+	methods: {
+		selectTabItem(passedAlongMenuItemObject) {
+			// alert(passedAlongMenuItemObject.name)
+			 this.navItemsArray.forEach(navItem => {
+			 	// alert(passedAlongMenuItemObject == navItem)
+				navItem.isActive = (passedAlongMenuItemObject == navItem)
+			})
+		}
+	}	
+})
+
+Vue.component('tab', {
+	template: '#template-tab',
+	props: {
+		name: { required: true },
+		selected: { default: false }
+	},
+	data() {
+		return {
+			isActive: false
+		}
+	},
+	computed: {
+		href() {
+			return '#' + this.name.toLowerCase().replace(/ /g, '-')
+		}
+	},
+	mounted() {
+		this.isActive = this.selected
+	}
+})
+
+new Vue({
+	el: '#app'
+})
+
+</script>
+</body>
+</html>
