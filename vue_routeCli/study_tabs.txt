@@ -1,0 +1,109 @@
+// https://codepen.io/paganaye/pen/dZRLPV
+
+<template id="tabs">
+<div>  
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" v-for="tab in tabs" :class="{active:tab.isActive}">
+            <a href="#" role="tab" data-toggle="tab" @click.stop.prevent="setActive(tab)">{{ tab.name }}</a>
+
+        </li>
+        <li>
+            <button type="button" class="btn btn-primary" @click="openNewTab">New tab</button>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div v-for="tab in tabs" role="tabpanel" class="tab-pane" :class="{active:tab.isActive}">
+          <slot name="tabcontent" :tab="tab" x="1"></slot>
+        </div>
+    </div>
+</div>
+</template>
+
+<div id="app">
+  <tabs :tabs="tabs">
+    <p>hi</p>
+    <template slot="tabcontent" slot-scope="scope">
+      <p>tab: {{scope.tab.name}}</p>
+      <p>id: {{scope.tab.id}}</p>
+    </template>
+  </tabs>
+  <pre>{{ JSON.stringify(this.tabs, null, 5) }}</pre>  
+</div>
+
+#app {
+  margin:20px;
+}
+
+Vue.component("tab", {
+  template: "#tab",
+  data: function() {
+    return {
+      databaseOptions: []
+    };
+  },
+  props: ["tab"],
+  methods: {}
+});
+
+Vue.component("tabs", {
+  props: ["tabs"],
+  template: "#tabs",
+  ready: function() {
+    this.setActive(this.tabs[0]);
+  },
+
+  methods: {
+    setActive: function(tab) {
+      var self = this;
+      tab.isActive = true;
+      this.activeTab = tab;
+      /*this.activeTab.isActive = true;
+            console.log("activeTab name=" + this.activeTab.name);*/
+      this.tabs.forEach(function(tab) {
+        console.log("TAB => " + tab);
+        console.log("activeTab id => " + self.activeTab.id);
+        console.log("tab id=" + tab.id);
+
+        if (tab.id !== self.activeTab.id) {
+          tab.isActive = false;
+        }
+      });
+    },
+    openNewTab: function() {
+      newTab = {
+        name: "tab" + (this.tabs.length + 1),
+        id: this.tabs.length,
+        isActive: true
+      };
+      this.tabs.push(newTab);
+      this.setActive(newTab);
+      /*this.activeTab = newTab;
+
+            console.log("### newtab name=" + newTab.name);*/
+    },
+
+    closeTab: function() {
+      console.log("### CLOSE!");
+    }
+  }
+});
+
+new Vue({
+  el: "#app",
+  data: { 
+    tabs: [
+      {
+        name: "tab1",
+        id: 0,
+        isActive: true
+      }
+    ],
+    activeTab: {}
+  },
+  methods:{
+    logAndReturn:function(t){
+      console.log("logAndReturn", t);
+      return "("+JSON.stringify(t)+")";
+    }
+  }
+});
