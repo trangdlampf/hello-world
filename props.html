@@ -1,0 +1,29 @@
+// https://flaviocopes.com/vue-props/
+
+Vue.component('user-name', {
+  props: ['name'],
+  template: '<p>Hi {{ name }}</p>'
+})
+
+
+Vue.component('user-name', {
+  props: ['name'],
+  template: '<p>Hi {{ name }}</p>'
+})
+
+<template>
+  <ComponentName :colored="color == 'white' ? true : false" />
+</template>
+
+<script>
+...
+export default {
+  //...
+  data: function() {
+    return {
+      color: 'white'
+    }
+  },
+  //...
+}
+</script>
