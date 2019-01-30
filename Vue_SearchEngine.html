@@ -1,0 +1,360 @@
+<template>
+<form id="mainSearch" v-cloak>
+<div class="bar">
+    <!-- Create a binding between the searchString model and the text field -->
+    <input type="text" v-model="searchString" placeholder="Enter your search terms" />
+</div>
+
+<div class="barView">
+	<a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+	<a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>	
+</div>
+	
+<!-- SOMETHING MISSING -->
+
+</form> 
+</template>
+
+<script>
+export default {
+  name: 'mainSearch',
+    data: {
+        searchString: "",
+        // The data model. These items would normally be requested via AJAX, 
+        // but are hardcoded here for simplicity.
+		    layout: 'list',
+          articles: [
+            {
+                "title": "Map: Washington, D.C.",
+                "url": "http://trangdoanlam.com/portfolio/leafletBeforeAfter.html",
+				        "image": {
+                    "large": "images/map_beforeAfter.jpg",
+                    "small": "images/map_beforeAfter.jpg"
+                },				
+				        "technologies": "Leaflet, HTML, CSS, JavaScript",
+				        "mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Hurricane Evacuation Routes in Houston",
+                "url": "http://trangdoanlam.com/portfolio/arcGis_houston2_hurricaneRoute.html",			
+				"image": {
+                    "large": "images/map_evacuation.jpg",
+                    "small": "images/map_evacuation.jpg"
+                },				
+				"technologies": "ArcGIS, REST, Nodes.js, Data Extraction",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Airports around the World",
+                "url": "http://trangdoanlam.com/portfolio/leafletClusterJson_airports.html",		
+				"image": {
+                    "large": "images/map_airports.jpg",
+                    "small": "images/map_airports.jpg"
+                },				
+				"technologies": "Leaflet and Clustering, JavaScript, JSON",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Earthquakes",
+                "url": "http://trangdoanlam.com/portfolio/leaflet_restServices.html",				
+				"image": {
+                    "large": "images/map_earthquake.jpg",
+                    "small": "images/map_earthquake.jpg"
+                },				
+				"technologies": "Maptiles, Leaflet, JavaScript, REST Services",
+				"mapType": "Map Tiles"				
+            },
+            {
+                "title": "Map: Europe and France",
+                "url": "http://trangdoanlam.com/portfolio/d3mapFrance.html",				
+				"image": {
+                    "large": "images/map_europe.jpg",
+                    "small": "images/map_europe.jpg"
+                },								
+				"technologies": "D3, JavaScript, CSV, Map Projection",
+				"mapType": "Vector Tiles"
+            },
+            {
+                "title": "Map: Europe and Asia",
+                "url": "http://trangdoanlam.com/portfolio/asynleaf.html",				
+				"image": {
+                    "large": "images/map_asynchronous.jpg",
+                    "small": "images/map_asynchronous.jpg"
+                },							
+				"technologies": "Leaflet, JavaScript, Asynchronous Calls",
+				"mapType": "Map Tiles"				
+            }
+        ]
+    },
+    computed: {
+        // A computed property that holds only those articles that match the searchString.
+        filteredArticles: function () {
+            var articles_array = this.articles,
+                searchString = this.searchString;
+            if(!searchString){
+                return articles_array;
+            }
+            searchString = searchString.trim().toLowerCase();
+            articles_array = articles_array.filter(function(item){
+                if( (item.title.toLowerCase().indexOf(searchString) !== -1) || (item.technologies.toLowerCase().indexOf(searchString) !== -1) ){
+                    return item;
+                }
+            })
+            // Return an array with the filtered data.
+            return articles_array;;
+        }
+    } 
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+body {
+	margin: 0px;
+    text-align: center;	/* center */
+}
+#container {
+	width: 100%;
+	h-align: center; /* center */
+	border: 0px solid blue;
+}
+hr {	
+	margin: 0px;
+	height: 4px;
+    background-color: #4990ff; /* #e6e600 #99cc00 green: #ace600  blue: #99ccff purple: #4711AE */
+	/* border-color: yellow; */ 
+    border-width: 0px;
+    border-style: solid; 
+}
+/* ========== Overrode Bootstrap ========== */
+.jumbotron h1 {
+	color: #4990ff;
+}
+/* ========== Took out styles for nav ========== */
+
+p {		
+	font-size: 14px;
+	font-family: serif;
+	font-weight: lighter;
+	color: #A8A8A8;
+	margin: 4 0 0 10; /* 4 0 0 20 */
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align: left;
+}
+p b{			
+	color: #BF9630;		
+	display: inline-block;				
+	border-radius: 2px; 		
+	text-transform: uppercase;		
+	font-size: 18px;
+	margin-top: -20px;
+}
+a, a:visited {		
+	outline:none;		
+	color:#389dc1; 
+} 	
+a:hover{		
+	text-decoration:none;	
+} 	
+section, footer, header, aside, nav{		
+	display: block;	
+}
+a .list-icon {
+	text-align:left;
+	margin-left: 0px;	
+	font: 10px serif; 
+	height: 60px; 
+	border: 3px solid red; /* Testing Purposes */	
+}
+
+/* =================== SEARCH ================== */
+/* Hide un-compiled mustache bindings
+until the Vue instance is ready */
+[v-cloak] {
+  display: none;
+}
+/*-------------------------
+    The search input
+	Purple Color was: #4711AE 
+--------------------------*/
+.bar{
+    background-color: #4990ff; 
+    background-image:-webkit-linear-gradient(top, #4990ff, #4990ff); 
+    background-image:-moz-linear-gradient(top, #4990ff, #4990ff);
+    background-image:linear-gradient(top, #4990ff, #4990ff);
+    box-shadow: 0 1px 1px #ccc;
+    border-radius: 2px;
+    width: 400px;
+    padding: 4px;
+    margin: 45px auto 20px;
+    position: relative;
+	display:inline-block;	
+}
+.bar input{
+    background:#fff no-repeat 13px 13px;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU5NEY0RTlFMTA4NzExRTM5RTEzQkFBQzMyRjkyQzVBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkU5NEY0RTlGMTA4NzExRTM5RTEzQkFBQzMyRjkyQzVBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTk0RjRFOUMxMDg3MTFFMzlFMTNCQUFDMzJGOTJDNUEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTk0RjRFOUQxMDg3MTFFMzlFMTNCQUFDMzJGOTJDNUEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4DjA/RAAABK0lEQVR42pTSQUdEURjG8dOY0TqmPkGmRcqYD9CmzZAWJRHVRIa0iFYtM6uofYaiEW2SRJtEi9YxIklp07ZkWswu0v/wnByve7vm5ee8M+85zz1jbt9Os+WiGkYdYxjCOx5wgFeXUHmtBSzpcCGa+5BJTCjEP+0nKWAT8xqe4ArPGEEVC1hHEbs2oBwdXkM7mj/JLZrad437sCGHOfUtcziutuYu2v8XUFF/4f6vMK/YgAH1HxkBYV60AR31gxkBYd6xAeF3VzMCwvzOBpypX8V4yuFRzX2d2gD/l5yjH4fYQEnzkj4fae5rJulF2sMXVrAsaTWttRFu4Osb+1jEDT71/ZveyhouTch2fINQL9hKefKjuYFfuznXWzXMTabyrvfyIV3M4vhXgAEAUMs7K0J9UJAAAAAASUVORK5CYII=);
+    border: none;
+    width: 100%;
+    line-height: 20px;
+    padding: 11px 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px #c4c4c4 inset; 
+    text-align: left;
+    font-size: 14px;
+    font-family: inherit;
+    color: #738289; 
+    font-weight: bold;
+    outline: none;
+    text-indent: 40px;
+}
+#myListSearch li {			
+	text-align:left;
+	margin-left: 0px;
+	font: 11px serif; 
+	height: 80px; 
+	border: 1px solid red; /* Testing Purposes */	
+} 
+ul #myListSearch {
+    list-style: none;
+    width: 360px; 
+    margin: 0 0; /* 0 auto */
+    text-align: left;
+	border: 0px solid green; /* Testing Purposes */
+}
+ul li a #myListSearch {
+	border-bottom: 0px solid #e17b2d; 
+    padding: 0px;
+    overflow: hidden;
+	font-size: 10px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+ul li #myListSearch img {
+    width: 70px;
+    height: 70px;
+    float: left;
+    border: none;
+}
+ul li #myListText {	
+    margin-left: 90px;
+	margin-top: 0px;
+    /* font-size: 10px;
+    padding-left: 100px;
+	margin-bottom: 0px;
+    color:#6e7a7f; 
+	width: 200px; */
+}
+/*-------------------------
+    	List layout
+--------------------------*/
+.barView {
+    background-color: none; 
+    background-image:-webkit-linear-gradient(top, none, none); 
+    background-image:-moz-linear-gradient(top, none, none);
+    background-image:linear-gradient(top, none, none);
+    box-shadow: 0 0px 0px #ccc; 
+    border-radius: 0px;
+    width: 140px;
+	padding: 0px;
+    padding-top: 46px;
+	padding-left: -20px;
+    margin: 0px 0px 0px;
+    position: absolute;
+	display:inline-block;	
+	border: 0px solid red;
+}
+/* BAR BEGIN: DIFFERENT VIEWS */
+.barView a{
+	background: #4990ff center center no-repeat; /* #4987a1 */
+	width: 40px;
+	height: 40px;
+	display:inline-block;
+	text-decoration:none !important;
+	margin: 0px;
+	margin-right:0px;
+	margin-top: 0px;
+	border-radius:0px;
+	cursor:pointer;
+	border: 0px solid blue;	
+}
+.barView a.active{
+	background-color: none; 
+}
+.barView a.list-icon{
+	margin-top: 5px;
+	height: 40px;
+	width: 40px;
+	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYzNkFCQ0ZBMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYzNkFCQ0ZCMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjM2QUJDRjgxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjM2QUJDRjkxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7h1bLqAAAAWUlEQVR42mL8////BwYGBn4GCACxBRlIAIxAA/4jaXoPEkMyjJ+A/g9MDJQBRhYg8RFqMwg8RJIUINYLFDmBUi+ADQAF1n8ofk9yIAy6WPg4GgtDMRYAAgwAdLYwLAoIwPgAAAAASUVORK5CYII=);
+}
+.barView a.grid-icon{
+	height: 40px;
+	width: 40px;
+	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjBEQkMyQzE0MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjBEQkMyQzE1MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MERCQzJDMTIxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MERCQzJDMTMxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4MjPshAAAAXklEQVR42mL4////h/8I8B6IGaCYKHFGEMnAwCDIAAHvgZgRyiZKnImBQsACxB+hNoDAQyQ5osQZIT4gH1DsBZABH6AB8x/JaQzEig++WPiII7Rxio/GwmCIBYAAAwAwVIzMp1R0aQAAAABJRU5ErkJggg==);
+}
+/* BAR END: DIFFERENT VIEWS */
+ul.list-icon, ul.grid-icon {
+	display:inline-block;	
+}
+ul.list {
+	list-style: none;
+	width: 500px;
+	margin: 0 auto; /* 0 auto */
+	text-align: left;
+}
+
+ul.list li{
+	border-bottom: 0px solid gray; /* #ddd */
+	padding: 0px;
+	overflow: hidden;
+}
+
+ul.list li img{
+	width:120px;
+	height:120px;
+	float:left;
+	border:none;
+}
+
+ul.list li p{
+	margin-left: 0px; /* 135px */
+	font-weight: bold;
+	color:#6e7a7f;
+}
+
+/*-------------------------
+	Grid layout
+--------------------------*/
+ul.grid #myGridSearch {
+	list-style: none;
+	width: 200px;
+	margin: 0 auto;
+	padding: 0px;
+	text-align: left;
+	border: 0px solid red;	
+}
+
+ul.grid li #myGridSearch{
+	padding-right: 60px;
+	padding-bottom: 4px;
+	float: left;
+	border: 0px solid green;	
+}
+
+ul.grid li a img #myGridSearch {
+	display: block; 
+	border: none;
+	border: 0px solid blue;	
+}
+
+
+/* 3 Major Colors: Purple Orange Green: 
+https://colorschemedesigner.com/csd-3.5/
+Purple: Main: #4711AE, Dark to Light: #2A0671, #482A83, #7746D7, #906CD7
+Green:  Main: #E2FA00, Dark to Light: #93A300, #AEBC2F, #EAFD3F, #EFFD72
+Orange: Main: #FFB600, Dark to Light: #A67600, #BF9630, #FFC840, #FFD773
+Gray: Medium #7d9098, Light: #c4c4c4
+*/
+</style>
