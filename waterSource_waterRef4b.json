@@ -1,0 +1,515 @@
+{"nodes":[
+{"name":"Landlocked"},
+{"name":"Island Nations"},
+{"name":"Rivers"},
+{"name":"Other Water Resources"},
+{"name":"Bangladesh"},
+{"name":"Bhutan"},
+{"name":"India"},
+{"name":"Maldives"},
+{"name":"Nepal"},
+{"name":"Pakistan"},
+{"name":"Sri Lanka"},
+{"name":"China"},
+{"name":"Democratic People's Republic of Korea"},
+{"name":"Japan"},
+{"name":"Mongolia"},
+{"name":"Republic of Korea"},
+{"name":"Cambodia"},
+{"name":"Lao People's Democratic Republic"},
+{"name":"Myanmar"},
+{"name":"Thailand"},
+{"name":"Viet Nam"},
+{"name":"Brunei Darussalam"},
+{"name":"Indonesia"},
+{"name":"Malaysia"},
+{"name":"Papua New Guinea"},
+{"name":"Philippines"},
+{"name":"Singapore"},
+{"name":"Timor-Leste"},
+{"name":"Agricultural Sector"},
+{"name":"Industrial Sector"},
+{"name":"Municipal Sector"}
+],
+"links":[
+ {
+   "source": 0,
+   "target": 4,
+   "value": 75
+ },
+ {
+   "source": 0,
+   "target": 5,
+   "value": 100
+ },
+ {
+   "source": 0,
+   "target": 6,
+   "value": 50.0
+ },
+ {
+   "source": 0,
+   "target": 7,
+   "value": 0
+ },
+ {
+   "source": 0,
+   "target": 8,
+   "value": 100
+ },
+ {
+   "source": 0,
+   "target": 9,
+   "value": 83.3
+ },
+ {
+   "source": 0,
+   "target": 10,
+   "value": 0
+ },
+ {
+   "source": 1,
+   "target": 11,
+   "value": 628.1
+ },
+ {
+   "source": 1,
+   "target": 12,
+   "value": 38.658
+ },
+ {
+   "source": 1,
+   "target": 13,
+   "value": 111.45
+ },
+ {
+   "source": 1,
+   "target": 14,
+   "value": 30.551
+ },
+ {
+   "source": 1,
+   "target": 15,
+   "value": 59.2
+ },
+ {
+   "source": 2,
+   "target": 16,
+   "value": 32.184
+ },
+ {
+   "source": 2,
+   "target": 17,
+   "value": 33.493
+ },
+ {
+   "source": 2,
+   "target": 18,
+   "value": 63.23
+ },
+ {
+   "source": 2,
+   "target": 19,
+   "value": 87.31
+ },
+ {
+   "source": 2,
+   "target": 20,
+   "value": 112.03
+ },
+ {
+   "source": 3,
+   "target": 21,
+   "value": 30.092
+ },
+ {
+   "source": 3,
+   "target": 22,
+   "value": 143.3
+ },
+ {
+   "source": 3,
+   "target": 23,
+   "value": 41.2
+ },
+ {
+   "source": 3,
+   "target": 24,
+   "value": 30.3921
+ },
+ {
+   "source": 3,
+   "target": 25,
+   "value": 111.56
+ },
+ {
+   "source": 3,
+   "target": 26,
+   "value": 30.19
+ },
+ {
+   "source": 3,
+   "target": 27,
+   "value": 31.172
+ },
+ {
+   "source": 4,
+   "target": 28,
+   "value": 61.5
+ },
+ {
+   "source": 4,
+   "target": 29,
+   "value": 30.77
+ },
+ {
+   "source": 4,
+   "target": 30,
+   "value": 33.6
+ },
+ {
+   "source": 5,
+   "target": 28,
+   "value": 0.318
+ },
+ {
+   "source": 5,
+   "target": 29,
+   "value": 0.003
+ },
+ {
+   "source": 5,
+   "target": 30,
+   "value": 0.017
+ },
+ {
+   "source": 6,
+   "target": 28,
+   "value": 688.0
+ },
+ {
+   "source": 6,
+   "target": 29,
+   "value": 17.0
+ },
+ {
+   "source": 6,
+   "target": 30,
+   "value": 56.0
+ },
+ {
+   "source": 7,
+   "target": 28,
+   "value": 0.0
+ },
+ {
+   "source": 7,
+   "target": 29,
+   "value": 0.0003
+ },
+ {
+   "source": 7,
+   "target": 30,
+   "value": 0.0056
+ },
+ {
+   "source": 8,
+   "target": 28,
+   "value": 9.32
+ },
+ {
+   "source": 8,
+   "target": 29,
+   "value": 0.0295
+ },
+ {
+   "source": 8,
+   "target": 30,
+   "value": 0.1476
+ },
+ {
+   "source": 9,
+   "target": 28,
+   "value": 172.4
+ },
+ {
+   "source": 9,
+   "target": 29,
+   "value": 1.4
+ },
+ {
+   "source": 9,
+   "target": 30,
+   "value": 9.65
+ },
+ {
+   "source": 10,
+   "target": 28,
+   "value": 11.31
+ },
+ {
+   "source": 10,
+   "target": 29,
+   "value": 0.831
+ },
+ {
+   "source": 10,
+   "target": 30,
+   "value": 0.805
+ },
+ {
+   "source": 11,
+   "target": 28,
+   "value": 385.2
+ },
+ {
+   "source": 11,
+   "target": 29,
+   "value": 133.5
+ },
+ {
+   "source": 11,
+   "target": 30,
+   "value": 79.4
+ },
+ {
+   "source": 12,
+   "target": 28,
+   "value": 6.61
+ },
+ {
+   "source": 12,
+   "target": 29,
+   "value": 1.145
+ },
+ {
+   "source": 12,
+   "target": 30,
+   "value": 0.9028
+ },
+ {
+   "source": 13,
+   "target": 28,
+   "value": 54.43
+ },
+ {
+   "source": 13,
+   "target": 29,
+   "value": 11.61
+ },
+ {
+   "source": 13,
+   "target": 30,
+   "value": 15.41
+ },
+ {
+   "source": 14,
+   "target": 28,
+   "value": 0.242
+ },
+ {
+   "source": 14,
+   "target": 29,
+   "value": 0.238
+ },
+ {
+   "source": 14,
+   "target": 30,
+   "value": 0.071
+ },
+ {
+   "source": 15,
+   "target": 28,
+   "value": 15.96
+ },
+ {
+   "source": 15,
+   "target": 29,
+   "value": 4.45
+ },
+ {
+   "source": 15,
+   "target": 30,
+   "value": 6.924
+ },
+ {
+   "source": 16,
+   "target": 28,
+   "value": 2.053
+ },
+ {
+   "source": 16,
+   "target": 29,
+   "value": 0.033
+ },
+ {
+   "source": 16,
+   "target": 30,
+   "value": 0.098
+ },
+ {
+   "source": 17,
+   "target": 28,
+   "value": 3.193
+ },
+ {
+   "source": 17,
+   "target": 29,
+   "value": 0.17
+ },
+ {
+   "source": 17,
+   "target": 30,
+   "value": 0.13
+ },
+ {
+   "source": 18,
+   "target": 28,
+   "value": 29.57
+ },
+ {
+   "source": 18,
+   "target": 29,
+   "value": 0.4984
+ },
+ {
+   "source": 18,
+   "target": 30,
+   "value": 3.323
+ },
+ {
+   "source": 19,
+   "target": 28,
+   "value": 51.79
+ },
+ {
+   "source": 19,
+   "target": 29,
+   "value": 2.777
+ },
+ {
+   "source": 19,
+   "target": 30,
+   "value": 2.739
+ },
+ {
+   "source": 20,
+   "target": 28,
+   "value": 77.75
+ },
+ {
+   "source": 20,
+   "target": 29,
+   "value": 3.074
+ },
+ {
+   "source": 20,
+   "target": 30,
+   "value": 1.206
+ },
+ {
+   "source": 21,
+   "target": 28,
+   "value": 0.0053
+ },
+ {
+   "source": 21,
+   "target": 29,
+   "value": 0.0
+ },
+ {
+   "source": 21,
+   "target": 30,
+   "value": 0.1515
+ },
+ {
+   "source": 22,
+   "target": 28,
+   "value": 92.76
+ },
+ {
+   "source": 22,
+   "target": 29,
+   "value": 24.65
+ },
+ {
+   "source": 22,
+   "target": 30,
+   "value": 13.99
+ },
+ {
+   "source": 23,
+   "target": 28,
+   "value": 2.505
+ },
+ {
+   "source": 23,
+   "target": 29,
+   "value": 4.788
+ },
+ {
+   "source": 23,
+   "target": 30,
+   "value": 3.902
+ },
+ {
+   "source": 24,
+   "target": 28,
+   "value": 0.001
+ },
+ {
+   "source": 24,
+   "target": 29,
+   "value": 0.1676
+ },
+ {
+   "source": 24,
+   "target": 30,
+   "value": 0.2235
+ },
+ {
+   "source": 25,
+   "target": 28,
+   "value": 67.07
+ },
+ {
+   "source": 25,
+   "target": 29,
+   "value": 8.254
+ },
+ {
+   "source": 25,
+   "target": 30,
+   "value": 6.235
+ },
+ {
+   "source": 26,
+   "target": 28,
+   "value": 0.0076
+ },
+ {
+   "source": 26,
+   "target": 29,
+   "value": 1.221
+ },
+ {
+   "source": 26,
+   "target": 30,
+   "value": 1.078
+ },
+ {
+   "source": 27,
+   "target": 28,
+   "value": 1.071
+ },
+ {
+   "source": 27,
+   "target": 29,
+   "value": 0.002
+ },
+ {
+   "source": 27,
+   "target": 30,
+   "value": 0.099
+ }
+]}
