@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+<style>
+body
+{
+	background: green; 
+	/* light gray: c2cbce  light green: fbfef3 green-gray: d1d6c2 dde1d2 light green: d1ed70 */
+	min-height: 0px;
+	margin-top: 0px; 
+	margin-bottom: 0px;
+	font-family: Avenir, Gill-Sans, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+p
+{
+	font-family: Avenir, Gill-Sans, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+.navbar {
+    margin-bottom: 0 !important; 
+	/* Overrides white space under navbar */
+}
+#wrapperOutside
+{
+	background: #c1dee3; 
+	/* f2ffe6  c1dee3  */	
+}
+#wrapperInside
+{
+	margin:0 auto;
+	background: #fafdff; 
+	/* light gray CCC e7e7e7 dadada fff5f7 faffff eaf5f4 edf7fa fafdff f5f6ff */
+	width:1200px;
+	height: 100%;
+	padding: 0px;
+	position: relative;
+	overflow: hidden;
+}
+#title 
+{
+	font-size: 50px;
+	position: absolute;
+	left: 80px;
+	top: 50px;
+	font-style: bold;	
+	text-shadow: 0 1.0px 0 #fff;
+}
+#subtitle 
+{
+	font-size: 30px;
+	position: absolute;
+	left: 144px;
+	top: 130px;
+	color: #cb0000; /* darker red: C70039  brighter red: ea4b01 */
+	text-shadow: 0 1.6px 0.4px black;
+	font-style: italic;	
+}
+.row 
+{
+	margin: 30px;
+	padding-top: 10px; 
+	background-color: none;
+}
+
+#pubDate
+{	
+	font-family: Courier, Avenir, Gill-Sans, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+#author
+{
+	font-style: italic;
+	font-size: 16px;
+	color: #1437c7; /* #38638f brighter blue: 164791 0334a6 1437c7 */
+}
+#bodyText
+{
+	margin-top: 10px;
+}
+
+/* BEGINNING OF STYLE FOR: Quote */
+
+.ArticleCopy blockquote{
+    border-radius: 3px;
+    position: relative;  
+    font-style: italic;
+    text-align: center;
+    padding: 1.8rem 1.0rem;
+	padding-bottom: 1.8rem;
+    width: 70%;  /* create space for the quotes */
+    color: #4a4a4a; /* #4a4a4a */
+    margin: 1rem auto 2rem;
+    color: #4a4a4a;
+    background: #ccffcc; /* #E8E8E8 green: DAF7A6 light green: ccffcc */
+}
+/* -- create the quotation marks -- */
+.ArticleCopy blockquote:before,
+.ArticleCopy blockquote:after{
+    font-family: FontAwesome;
+    position: absolute;
+    /* -- inside the relative position of blockquote -- */
+    top: 18px;	
+    color: #ccffcc; /* #E8E8E8 */
+    font-size: 36px;
+}
+.ArticleCopy blockquote:before{
+    content: "\f10d";
+    margin-right: 13px;
+    right: 100%;
+}
+.ArticleCopy blockquote:after{
+    content: "\f10e";
+    margin-left: 13px;
+    left: 100%;  
+}
+
+
+</style>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Schraml Designs</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="http://trangdoanlam.com" target="_blank">Home</a></li>
+      <li><a href="http://trangdoanlam.com/data-binding" target="_blank">Data Binding</a></li>
+      <li><a href="http://trangdoanlam.com/maps" target="_blank">Maps</a></li>
+    </ul>
+	
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+	
+    <form class="navbar-form navbar-right" action="/action_page.php">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</nav>
+
+<div id="wrapperOutside">
+	<div id="wrapperInside">	
+		
+		<img id="imageBanner" src="images/pollution4.jpg" style="opacity: 1.0" class="img-fluid" alt="Responsive image" />
+		<h1 id="title">Population and Gas Emissions</h2>
+		<p id="subtitle">the Rising Cost to our Future Generations</p>
+
+		<div class="row"><!-- BEGINNING OF: Both Columns -->
+			<div class="col-sm-9" style=""><!-- BEGINNING OF: First Column of 2/3 // style="background-color:lavender;" -->
+
+				<div id="bodyContainer">
+				
+					<div id="author">by Trang Lam</div>
+					<div id="pubDate"><b>Published:</b> March 6, 2019</div>	
+
+					<div id="bodyText">
+						
+						<p>A great deal has been discussed in recent years about Gas Emissions and its effect on Global Warming. The battle rages on, but there are some facts that can be agreed upon. The quote below nicely sums up the debate about the Greenhouse Effect and Global Warming. Is the atmosphere absorbing too much infrared radidation due to fossil fuels and gas emissions? Is this leading to Global Warming?
+
+							<section class="ArticleCopy">
+							<blockquote><p>The greenhouse effect is a natural function of Earth’s atmosphere, the happy result of which is a livable world. Gases in the atmosphere, especially water vapor, insulate the Earth, preventing the sun’s heat from escaping. The Earth stays warm and life thrives. But human activity, especially the use of fossil fuels, has increased the amount of greenhouse gases in the atmosphere. More heat is absorbed, increasing the greenhouse effect and bringing negative consequences to Earth’s systems and life.[1]</p></blockquote> 
+							</section>
+
+						<br />
+						One thing that cannot not be disputed is that the average temperature is rising. Since 1880, it has risen 1.5 degrees Fahrenheit based on reports by the <i>Intergovernmental Panel on Climate Change</i>. This rise in temperature results in the melting ice in the Earth's poles leading to a change in the sea level, which affects the climate. Using Europe for illustration purposes, we can compare the population of certain regions and how much air pollution in each area versus how much air pollution is created from the Industrial Sector.
+
+						<br />
+						<br />
+						Since Europe is categorized into four major regions, we can group the data by the regions; the focus of this article will be on the regions and data available (from UN studies):
+
+							<ul class="">
+								<li><b><i>Southern Europe:</i></b> Spain, Portugal, Greece, Italy, Cypress, Malta, Monaco, San Marino, and Andorra</li> 
+								<li><b><i>Western Europe:</i></b> Ireland and countries of the United Kingdom (England, Wales, Northern Ireland, and Scotland)</li> 
+								<li><b><i>Northern Europe:</i></b> Iceland, Finland, Norway, Sweden, and Denmark</li>
+								<li><b><i>Central Europe:</i></b> Germany, France, Switzerland, Austria, Belgium, the Netherlands, and Luxembourg</li>
+								<li><b><i>Eastern Europe:</i></b> Russia, Belarus, Bulgaria, Czech Republic, Estonia, Hungary, Latvia, Lithuania, Malta, Moldova, Poland, Romania, Slovakia, Slovenia</li>
+							</ul>
+
+						<br />
+						This article will attempt to trace the connections between population and gas emissions (specifically from the Industrial Sector) and how this has fluctuated in recent years. The reader can decide for himself if he believes that due to the gas emissions, the level of emissions has affected the rising temperature to create the phenomenon of Global Warming.
+						</p>
+						
+						
+					</div>	<!-- END OF: bodyText -->		
+				</div>		<!-- END OF: bodyContainer -->
+
+			</div>			<!-- END OF: First Column of 2/3 -->
+			
+			<div class="col-sm-3" style="background-color:lavenderblush;">
+				<p>Related Articles:<br />Article 1<p>
+			</div>			<!-- END OF: Second Column of 2/3 -->
+		</div>				<!-- END OF: Both Columns -->
+		
+	</div>					<!-- END OF: wrapperInside, for everything under the navigation bar -->
+</div>						<!-- END OF: wrapperOutside, for everything under the navigation bar -->
+
+
+
+
+<script src="script/d3/d3.v3.5.17.js"></script>
+<script src="script/d3/sankey.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>
+
