@@ -1,0 +1,66 @@
+<style>
+.router-link-active {
+  font-weight: bold;
+  color: red;
+}
+</style>
+<!-- STUDY PURPOSES: https://codepen.io/takatama/pen/MbbNmg -->
+<div id="app">
+  <p>
+    <router-link v-if="!loggedIn"  to="/login">Login</router-link>
+    <router-link v-if="loggedIn"  to="/logout">Logout</router-link>
+    <router-link to="/about">About</router-link>
+    <router-link to="/dashboard">Dashboard</router-link>
+  </p>
+  <router-view v-bind:logged-in="loggedIn"></router-view>
+</div>
+
+<script>
+const About = { template: '<h1>About</div>' }
+const Dashboard = {
+  props: ['loggedIn'],
+  template: '<div><h1>Dashboard</h1>loggedIn: {{loggedIn}}</div>'
+}
+const bus = new Vue({})
+const Login = {
+  template: '<button v-on:click="login">Login</button>',
+  methods: {
+    login: function() {
+      router.push('/')
+      bus.$emit('status-changed', 'loggedIn')
+    }
+  }
+}
+const Logout = {
+  template:'<button v-on:click="logout">Logout</button>',
+  methods: {
+    logout: function() {
+      router.push('/')
+      bus.$emit('status-changed', 'loggedOut')
+    }
+  }
+}
+
+const routes = [
+  { path: '/login', component: Login },
+  { path: '/logout', component: Logout },
+  { path: '/about', component: About },
+  { path: '/dashboard', component: Dashboard }
+]
+
+const router = new VueRouter({
+  routes
+})
+
+const app = new Vue({
+  router,
+  data: {
+    loggedIn: false
+  },
+  created: function() {
+    bus.$on('status-changed', function(status) {
+      this.loggedIn = (status === 'loggedIn')
+    }.bind(this))
+  }
+}).$mount('#app')
+</script>
