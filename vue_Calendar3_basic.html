@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Calendar: Basic</title>
+  
+  <!-- -Study from:
+  https://medium.com/@leemartin/building-a-damn-simple-calendar-layout-with-css-grid-moment-and-vue-65698e5e277e 
+  https://codepen.io/leemartin/pen/KJqPgQ -->
+  <!-- jquery for Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+  <!-- bootstrap 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+  <!-- font awesome 
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+
+  <!-- Vue.js script source -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- Moment.js script source -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>  
+  
+
+<style>
+html, body{
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  align-items: center;
+  background: #768768;
+  box-sizing: border-box;
+  display: flex;
+  font: calc(2vh) "Helvetica", sans-serif;
+  justify-content: center;
+  padding: 2em;
+}
+
+#calendar{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  max-width: 1024px;
+  width: 100%;
+}
+
+#calendar > *{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#calendar > *::before {
+  content: "";
+  display: inline-block;
+  height: 0;
+  padding-bottom: 100%;
+  width: 1px;
+}
+
+#calendar > *.today{
+  color: white;
+  border: 0.1em solid white;
+  border-radius: 100%;
+}
+</style>
+
+  <title>Task List App</title>
+</head>
+<body>
+	<main id="calendar">
+	  <div>S</div>
+	  <div>M</div>
+	  <div>T</div>
+	  <div>W</div>
+	  <div>T</div>
+	  <div>F</div>
+	  <div>S</div>
+	  
+	  <div v-for="(day, index) in days" :style="{ gridColumn: column(index) }" :class="{ today: today(day) }">
+		{{ day.format('D') }}
+	  </div>
+	</main>
+
+
+<script>
+const app = new Vue({
+  el: '#calendar',
+  data() {
+    return {
+      days: []  
+    }
+  },
+  methods: {
+    column(index) {
+      if (index == 0) {
+        return this.days[0].day() + 1
+      }
+    },
+    today(day) {
+      return moment().isSame(day, 'day')
+    }
+  },
+  mounted() {
+    let monthDate = moment().startOf('month')
+    
+    this.days = [...Array(monthDate.daysInMonth())].map((_, i) => monthDate.clone().add(i, 'day'))
+  }
+})
+
+</script>
+</body>
+</html>
