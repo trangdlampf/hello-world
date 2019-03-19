@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue and Bootstrap</title>
+<!-- STUDY PURPOSES: https://codepen.io/o-eusse/pen/rZvrXX -->
+	
+	<!--jquery cdn-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	
+	<!--bootstrap cdn-->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--vuejs cdn-->
+	<script src="https://unpkg.com/vue@2.1.7/dist/vue.js"></script>
+	<!-- My CSS -->
+	
+<style>
+:root {
+  --body-bkg: #F0EFE9;
+  --todo-bkg: #FFFFFF;
+  --text-color: #5F6271;
+  --text-unselected-color: #d7d7dc;
+  --control-color: #5792eb; /* Blue #5792eb		Green #50E3A4 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.welcome-lading {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: var(--body-bkg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: var(--text-color);
+}
+
+.todo-container {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.18);
+  height: 27.1em; /* Originally: 24em 	490px */
+  padding: 0em; /* 2em */
+  position: relative;
+  width: 760px; /* 380px */
+}
+
+/* TRANG ADDED THIS */
+.myImage {
+  background-color: blue;
+  width: 380px;
+  height: 380px;
+  opacity: 1.0;
+  position: absolute;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+.todo-container {
+  background-color: var(--todo-bkg);
+}
+
+header {
+  align-items: center;
+  display: flex; 
+  justify-content: space-between;
+  width: 330px; /* TRANG ADDED 3 LINES */
+  margin-left: 400px;
+  margin-right: 10px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
+
+header .date {
+  display: flex;
+  justify-content: space-between;
+  width: 22%;
+}
+
+header .date .day-number {
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+header .date .month-year-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: .8em;
+}
+
+header .date .month-year-wrapper .month {
+  font-weight: bold;
+}
+
+header .today {
+  font-weight: 600;
+}
+
+/*TODO BODY*/
+main.todo-list {
+  margin-top: 0em; /* 1em */
+}
+
+main.todo-list .tasks-container {
+  overflow-y: auto;
+  max-height: 260px; /*Scroll uando muestra el scroll*/
+  max-width: 344px; /* TRANG ADDED 2 LINES */
+  margin-left: 392px;
+}
+
+main.todo-list .tasks-container li.task-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .7em; /* TRANNG CHANGED: .7em */
+}
+
+li.task-container.checked p {
+  color: var(--text-unselected-color);
+  text-decoration: line-through;
+  transition: all 500ms ease-in-out;
+}
+
+li.task-container.checked input {
+  border-color: var(--control-color);
+  transition: all 500ms ease-in-out;
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  border: 2px solid var(--text-unselected-color); /* border: 3px solid var(--text-unselected-color);  */
+  border-radius: 50%;
+  cursor: pointer;
+  width: 18px; /* 25 */
+  height: 18px; /* 25 */
+  outline: none;
+}
+
+button.add-task-btn {
+  background-color: var(--control-color);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  height: 90px;
+  width: 90px;
+  position: absolute;
+  bottom: -45px;
+  left: calc(380px - 45px); /* TRANG CHANGED: calc(190px - 45px) */
+  outline: none;
+  transition: 200ms ease-in-out;
+}
+
+button.add-task-btn span {
+  font-size: 3em;
+  font-weight: bold;
+  color: #46BE8B; /* green #46BE8B  blue #5792eb */
+  font-family: none;
+}
+
+button.add-task-btn:active {
+  transform: scale(.9);
+}
+</style>	
+</head>
+<body>
+
+    <div id="app">
+            <div class="todo-container">		
+			
+				<!-- TRANG ADDED THIS ON MAR 19 -->
+				<div class="myImage" style="background: url('image5.jpg')">
+				</div>
+			
+                <header class="current-date">
+					<div class="date">
+						<span class="day-number">{{ date.dayNum }}</span>
+						<div class="month-year-wrapper">
+							<span class="month">{{ date.month }}</span>
+							<span class="year">{{ date.year }}</span>
+						</div>
+					</div>
+					<div class="today"><span>{{ date.dayName }}</span></div>
+                </header>
+                <main class="todo-list">
+					<ul class="tasks-container">
+						<li class="task-container" v-for="task in tasks" v-bind:class="{ checked: !task.state }">
+							<p class="task">{{ task.name }}</p>
+							<input type="radio" v-on:click="checkTask" />
+						</li>
+					</ul>
+                </main>
+					<button class="add-task-btn" v-on:click="addTask">
+						<span>+</span>
+					</button>
+            </div>
+            </div>
+
+</body>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    tasks: [],
+    task: '',
+    date: {
+      dayNum: '',
+      month: '',
+      year: '',
+      dayName: ''
+    }
+  },
+  mounted: function() {
+    this.getCurrentDay()
+  },
+  methods: {
+    getCurrentDay: function() {
+      const today = new Date()
+      let dayName = moment(today).format('dddd')
+      
+      let [ monthDay, year ] = moment().format('ll').split(',')
+      let [ month, day ] = monthDay.split(' ')
+      
+      month = month.toUpperCase()
+      dayName = dayName.toUpperCase()
+      
+      this.date.dayNum = day
+      this.date.month = month
+      this.date.year = year
+      this.date.dayName = dayName
+    },
+    addTask: function() {
+      const inputTask = prompt('Please add an item to the List.')
+      if(inputTask) {
+        var objTask = {
+          name: inputTask,
+          state: true
+        }
+        this.tasks.unshift(objTask)
+      }
+    },
+    checkTask: function(e){
+      const taskElement = e.target.parentNode
+      taskElement.classList.toggle('checked')
+    }
+  },
+  computed: {
+  }
+})
+
+</script>
+</html>
